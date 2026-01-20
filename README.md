@@ -45,3 +45,19 @@ O banco de dados foi configurado nativamente no Termux para garantir a melhor pe
 * **Phantom Process Killer:** Estabilização do servidor via comandos ADB para impedir que o kernel do Android 12 encerre os binários do Postgres em background.
 * **Missing Directory:** Correção do erro de inicialização do SSH através da criação manual do diretório `/run/sshd`.
 * **Network Handshake:** Resolução de conflitos de porta entre o Host (Termux) e o Guest (Ubuntu PRoot).
+
+
+
+## ⚠️ Comportamento de Sessão e Persistência
+
+Durante o desenvolvimento, observei um comportamento específico na gestão de processos entre o Host (Termux) e o Guest (Ubuntu):
+
+### 1. Persistência do Terminal
+Ao utilizar o script `./start-server.sh`, a sessão do Ubuntu torna-se o processo principal. 
+- **Ação:** O comando `exit` encerra o container PRoot.
+- **Efeito:** Devido ao encadeamento de comandos, o encerramento do container pode fechar a sessão atual do Termux para garantir que não fiquem processos "zumbis" consumindo a RAM do Samsung A12.
+
+### 2. Identificação de Ambiente via Neofetch
+Embora o hardware reportado seja sempre o do dispositivo host (Kernel Android / Helio P35), a integridade do ambiente Ubuntu é confirmada pelo:
+- **OS:** Ubuntu 25.10 (Oracular Oriole)
+- **Package Manager:** Presença do `apt`.

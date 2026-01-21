@@ -10,12 +10,16 @@ Este repositório documenta a transformação de um dispositivo *Samsung Galaxy 
 ## 🛠️ Especificações do Ecossistema
 * *Servidor (Host):* Samsung Galaxy A12 (Octa-core / 4GB RAM)
 * *S.O. Base:* Android 11+
-* *Ambiente Linux:* Termux + PRoot (Ubuntu 22.04 LTS)
+* *Ambiente Linux:* Termux + PRoot (Ubuntu 25.10 LTS)
 * *Estação de Trabalho:* Vision R15m (Ryzen 5 / Ubuntu)
 * *Armazenamento Externo:* HDD 320GB (via Adaptador SATA/USB)
 
 ---
 
+
+
+
+    
 ## 🏗️ 1. Implementação da Infraestrutura
 
 A base do servidor foi construída utilizando emulação de espaço de usuário (PRoot) para rodar uma distribuição Linux completa sem necessidade de acesso Root.
@@ -38,15 +42,15 @@ Para viabilizar o uso do **VS Code Remote Server**, foi implementado um ambiente
 ### 3. Persistência de Dados (PostgreSQL)
 O banco de dados foi configurado nativamente no Termux para garantir a melhor performance de I/O, utilizando o armazenamento externo como volume principal.
 
----
+__________________________________
 
 ## 🛠️ Desafios Superados (Troubleshooting)
 
 * **Phantom Process Killer:** Estabilização do servidor via comandos ADB para impedir que o kernel do Android 12 encerre os binários do Postgres em background.
 * **Missing Directory:** Correção do erro de inicialização do SSH através da criação manual do diretório `/run/sshd`.
-* **Network Handshake:** Resolução de conflitos de porta entre o Host (Termux) e o Guest (Ubuntu PRoot).
+* **Network Handshake:** Conflitos de porta entre o Host (Termux) e o Guest (Ubuntu PRoot).
 
-
+__________________________________
 
 ## ⚠️ Comportamento de Sessão e Persistência
 
@@ -61,3 +65,27 @@ Ao utilizar o script `./start-server.sh`, a sessão do Ubuntu torna-se o process
 Embora o hardware reportado seja sempre o do dispositivo host (Kernel Android / Helio P35), a integridade do ambiente Ubuntu é confirmada pelo:
 - **OS:** Ubuntu 25.10 (Oracular Oriole)
 - **Package Manager:** Presença do `apt`.
+
+___________________________________
+
+
+### conflito resolvido
+-O S.O não permitia abrir o servidor Ubuntu, e ao abrir o servidor Termux e fazer o login direto, era fechado automaticamente, sendo necessário uma solução para abrir dentro do prórprio ubuntu
+-usando proot-distro login ubuntu, para acessar o Sistema dentro do server Termux, usava-se os seguintes comandos: mkdir -p /run/sshd; /usr/sbin/sshd -p 8023 2>/dev/null; ssh root@IP -p 8023
+
+**Dessa forma é manual e extensa.**
+
+**automatização:**
+-dentro do ubuntu (proot-distro login ubuntu), abri o servidor manualmemnte mkdir -p /run/sshd;    /usr/sbin/sshd -p 8023 2>/dev/null;    ssh root@IP -p 8023. 
+-dentro do servidor, abri no cd ~ o nano ./bashrc , e adicionei nas informações do servidor as duas primeiras etapas, bastando apenas digitar (ssh root@ip -p 8023)
+
+### novo modo de abertura
+-entrar no server primario (termux) 
+-abrir o ubuntu - proot-distro login ubuntu.
+-dentro do ubuntu - ssh root@IP -p 8023 -> server aberto
+
+### para entrar no VScode pelo servidor
+-instalar a extenção Remote SSH
+-adicionar o endereço IP (ssh root@IP -p 8023)
+-coloque a senha do Servidor
+-conectado

@@ -1,29 +1,26 @@
 # android-ssh-fullstack-server
-Servidor PostgreSQL nativo e ambiente Ubuntu (PRoot) rodando em Android 12 via Termux, com suporte a VS Code Remote-SSH e otimização de Phantom Processes.
+Servidor PostgreSQL nativo e ambiente Ubuntu (PRoot) rodando em Android 12 via Termux, com suporte a VS Code Remote-SSH, otimização de login e Banco de Dados PostgreSQL.
 
 # 📱 Mobile-Server Architecture: A12 Ubuntu & PostgreSQL
 
 ## 📌 Sobre o Projeto
-Este repositório documenta a transformação de um dispositivo *Samsung Galaxy A12* (hardware móvel subutilizado) em um ambiente de servidor Linux robusto. O objetivo é criar um laboratório de desenvolvimento, hospedando serviços de banco de dados e automações, perfeitamente integrado ao meu setup principal (Vision R15m no Ubuntu).
+ documentando a transformação de um celular *Samsung Galaxy A12* (hardware móvel) em um ambiente de servidor Linux robusto. O objetivo era criar um laboratório de desenvolvimento, hospedando serviços de banco de dados e automações, integrado ao meu setup principal (Vision R15m no Ubuntu).
 
 
 ## 🛠️ Especificações do Ecossistema
-* *Servidor (Host):* Samsung Galaxy A12 (Octa-core / 4GB RAM)
-* *S.O. Base:* Android 11+
-* *Ambiente Linux:* Termux + PRoot (Ubuntu 25.10 LTS)
-* *Estação de Trabalho:* Vision R15m (Ryzen 5 / Ubuntu)
-* *Armazenamento Externo:* HDD 320GB (via Adaptador SATA/USB)
+- *Servidor (Host):* Samsung Galaxy A12 (Octa-core / 4GB RAM)
+- *S.O. Base:* Android 11+
+- *Ambiente Linux:* Termux + PRoot (Ubuntu 25.10 LTS)
+- *Estação de Trabalho:* Vision R15m (Ryzen 5 / Ubuntu)
+- *Armazenamento Externo:* HDD 320GB (via Adaptador SATA/USB)
 
----
-
-
+__________________________
 
 
     
 ## 🏗️ 1. Implementação da Infraestrutura
 
-A base do servidor foi construída utilizando emulação de espaço de usuário (PRoot) para rodar uma distribuição Linux completa sem necessidade de acesso Root.
-
+A base do servidor foi construída utilizando emulação de espaço de usuário (PRoot) para rodar uma distribuição Linux completa.
 ### Setup do Ambiente
 1. *Instalação do Host:*
    ```bash
@@ -31,17 +28,17 @@ A base do servidor foi construída utilizando emulação de espaço de usuário 
    pkg install proot-distro
    proot-distro install ubuntu
 
-   ### 2. Camada de Compatibilidade (Glibc & VS Code)
-Para viabilizar o uso do **VS Code Remote Server**, foi implementado um ambiente isolado (Ubuntu) para fornecer as bibliotecas `Glibc` e `libstdc++`, inexistentes no runtime nativo do Android (Bionic).
-
-* **Configuração do SSH:**
-  - Porta de escuta: `8023` (Bypass de restrição de portas baixas).
-  - Inicialização: Caminho absoluto `/usr/sbin/sshd`.
-  - Autenticação: Customização do `sshd_config` para desativar o módulo `PAM` e permitir `RootLogin`.
-
-### 3. Persistência de Dados (PostgreSQL)
+2 . Banco de Dados (PostgreSQL)
 O banco de dados foi configurado nativamente no Termux para garantir a melhor performance de I/O, utilizando o armazenamento externo como volume principal.
-
+```
+pkg update && pkg upgrade -y
+pkg install postgresql -y
+mkdir -p $PREFIX/var/lib/postgresql
+initdb $PREFIX/var/lib/postgresql
+pg_ctl -D $PREFIX/var/lib/postgresql start
+createuser --superuser --pwprompt seu_usuario
+psql 
+```
 __________________________________
 
 ## 🛠️ Desafios Superados (Troubleshooting)
@@ -68,6 +65,16 @@ Embora o hardware reportado seja sempre o do dispositivo host (Kernel Android / 
 
 ___________________________________
 
+***VScode***
+
+Para viabilizar o uso do **VSCode Remote Server**, foi implementado um ambiente isolado (Ubuntu) para fornecer as bibliotecas `Glibc` e `libstdc++`, inexistentes no runtime nativo do Android (Bionic).
+
+* **Configuração do SSH:**
+  - Porta de escuta: 8023 (Bypass de restrição de portas baixas).
+  - Inicialização: Caminho absoluto `/usr/sbin/sshd`.
+  - Autenticação: Customização do `sshd_config` para desativar o módulo `PAM` e permitir `RootLogin`.
+  - 
+Erro ❌: Conflito entre os Servidores.
 
 ### conflito resolvido
 -O S.O não permitia abrir o servidor Ubuntu, e ao abrir o servidor Termux e fazer o login direto, era fechado automaticamente, sendo necessário uma solução para abrir dentro do prórprio ubuntu

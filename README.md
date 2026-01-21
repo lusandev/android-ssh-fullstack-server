@@ -22,7 +22,7 @@ __________________________
 ## 🏗️ 1. Implementação da Infraestrutura ##
 
 A base do servidor foi construída utilizando emulação de espaço de usuário (PRoot) para rodar uma distribuição Linux completa.
-### Setup do Ambiente
+### Setup do Ambiente ###
 1. *Instalação do Host:*
    ```bash
    pkg update && pkg upgrade
@@ -42,7 +42,7 @@ psql nome_banco_de_dados
 ```
 Este banco é o meu repositório central de estudos. Nele, registo todos os exercícios de cursos e as tecnologias que estou a explorar, mantendo um histórico estruturado do meu progresso.
 
-## forma de acesso: 
+## forma de acesso: ##
 
 -após a instalação, digite no terminal: psql postresql (ou o nome que você escolher a ele) e digite a senha.
 
@@ -69,7 +69,7 @@ Ao utilizar o script `./start-server.sh`, a sessão do Ubuntu torna-se o process
 - **Ação:** O comando `exit` encerra o container PRoot.
 - **Efeito:** Devido ao encadeamento de comandos, o encerramento do container pode fechar a sessão atual do Termux para garantir que não fiquem processos "zumbis" consumindo a RAM do Samsung A12.
 
-### 2. Identificação de Ambiente via Neofetch
+### 2. Identificação de Ambiente via Neofetch ###
 Embora o hardware reportado seja sempre o do dispositivo host (Kernel Android / Helio P35), a integridade do ambiente Ubuntu é confirmada pelo:
 - **OS:** Ubuntu 25.10 (Oracular Oriole)
 - **Package Manager:** Presença do `apt`.
@@ -84,7 +84,10 @@ Para viabilizar o uso do **VSCode Remote Server**, foi implementado um ambiente 
   - Porta de escuta: 8023 (Bypass de restrição de portas baixas).
   - Inicialização: Caminho absoluto `/usr/sbin/sshd`.
   - Autenticação: Customização do `sshd_config` para desativar o módulo `PAM` e permitir `RootLogin`.
-  - 
+    ---
+    Cuidado, configuração para uso pessoal e Servidores locais, para produção em nuvem é recomendado uso de chave SSH.
+    ---
+   
 Erro ❌: Conflito entre os Servidores.
 
 ### conflito resolvido

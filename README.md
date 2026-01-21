@@ -3,12 +3,12 @@ Servidor PostgreSQL nativo e ambiente Ubuntu (PRoot) rodando em Android 12 via T
 
 # 📱 Mobile-Server Architecture: A12 Ubuntu & PostgreSQL
 
-## 📌 Sobre o Projeto
+## 📌 Sobre o Projeto ##
  documentando a transformação de um celular *Samsung Galaxy A12* (hardware móvel) em um ambiente de servidor Linux robusto. O objetivo era criar um laboratório de desenvolvimento, hospedando serviços de banco de dados e automações, integrado ao meu setup principal (Vision R15m no Ubuntu).
 
 __________________________
 
-## 🛠️ Especificações do Ecossistema
+## 🛠️ Especificações do Ecossistema ##
 - *Servidor (Host):* Samsung Galaxy A12 (Octa-core / 4GB RAM)
 - *S.O. Base:* Android 11+
 - *Ambiente Linux:* Termux + PRoot (Ubuntu 25.10 LTS)
@@ -19,7 +19,7 @@ __________________________
 
 
     
-## 🏗️ 1. Implementação da Infraestrutura
+## 🏗️ 1. Implementação da Infraestrutura ##
 
 A base do servidor foi construída utilizando emulação de espaço de usuário (PRoot) para rodar uma distribuição Linux completa.
 ### Setup do Ambiente
@@ -29,7 +29,7 @@ A base do servidor foi construída utilizando emulação de espaço de usuário 
    pkg install proot-distro
    proot-distro install ubuntu
 
-2 . Banco de Dados (PostgreSQL)
+##2 . Banco de Dados (PostgreSQL)##
 O banco de dados foi configurado nativamente no Termux para garantir a melhor performance de I/O, utilizando o armazenamento externo como volume principal.
 ```
 pkg update && pkg upgrade -y
@@ -52,7 +52,7 @@ Este banco é o meu repositório central de estudos. Nele, registo todos os exer
 
 __________________________________
 
-## 🛠️ Desafios Superados (Troubleshooting)
+## 🛠️ Desafios Superados (Troubleshooting)##
 
 * **Phantom Process Killer:** Estabilização do servidor via comandos ADB para impedir que o kernel do Android 12 encerre os binários do Postgres em background.
 * **Missing Directory:** Correção do erro de inicialização do SSH através da criação manual do diretório `/run/sshd`.
@@ -60,7 +60,7 @@ __________________________________
 
 __________________________________
 
-## ⚠️ Comportamento de Sessão e Persistência
+## ⚠️ Comportamento de Sessão e Persistência ##
 
 Durante o desenvolvimento, observei um comportamento específico na gestão de processos entre o Host (Termux) e o Guest (Ubuntu):
 
@@ -93,16 +93,16 @@ Erro ❌: Conflito entre os Servidores.
 
 **Dessa forma é manual e extensa.**
 
-**automatização:**
+##**automatização:**##
 -dentro do ubuntu (proot-distro login ubuntu), abri o servidor manualmemnte mkdir -p /run/sshd;    /usr/sbin/sshd -p 8023 2>/dev/null;    ssh root@IP -p 8023. 
 -dentro do servidor, abri no cd ~ o nano ./bashrc , e adicionei nas informações do servidor as duas primeiras etapas, bastando apenas digitar (ssh root@ip -p 8023)
 
-### novo modo de abertura
+### novo modo de abertura ###
 -entrar no server primario (termux) 
 -abrir o ubuntu - proot-distro login ubuntu.
 -dentro do ubuntu - ssh root@IP -p 8023 -> server aberto
 
-### para entrar no VScode pelo servidor
+### para entrar no VScode pelo servidor ###
 -instalar a extenção Remote SSH
 -adicionar o endereço IP (ssh root@IP -p 8023)
 -coloque a senha do Servidor

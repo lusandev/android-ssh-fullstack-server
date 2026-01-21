@@ -6,6 +6,7 @@ Servidor PostgreSQL nativo e ambiente Ubuntu (PRoot) rodando em Android 12 via T
 ## 📌 Sobre o Projeto
  documentando a transformação de um celular *Samsung Galaxy A12* (hardware móvel) em um ambiente de servidor Linux robusto. O objetivo era criar um laboratório de desenvolvimento, hospedando serviços de banco de dados e automações, integrado ao meu setup principal (Vision R15m no Ubuntu).
 
+__________________________
 
 ## 🛠️ Especificações do Ecossistema
 - *Servidor (Host):* Samsung Galaxy A12 (Octa-core / 4GB RAM)
@@ -37,8 +38,19 @@ mkdir -p $PREFIX/var/lib/postgresql
 initdb $PREFIX/var/lib/postgresql
 pg_ctl -D $PREFIX/var/lib/postgresql start
 createuser --superuser --pwprompt seu_usuario
-psql 
+psql nome_banco_de_dados
 ```
+Este banco é o meu repositório central de estudos. Nele, registo todos os exercícios de cursos e as tecnologias que estou a explorar, mantendo um histórico estruturado do meu progresso.
+
+## forma de acesso: 
+
+-após a instalação, digite no terminal: psql postresql (ou o nome que você escolher a ele) e digite a senha.
+
+### 🗄️ Gerenciamento de Dados
+O banco de dados armazena o progresso dos meus estudos. 
+Para ver a estrutura das tabelas e como os dados são organizados, consulte o arquivo:
+👉 [setup.sql](./setup.sql)
+
 __________________________________
 
 ## 🛠️ Desafios Superados (Troubleshooting)

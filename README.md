@@ -46,9 +46,8 @@ Este banco é o meu repositório central de estudos. Nele, registo todos os exer
 
 -após a instalação, digite no terminal: psql postresql (ou o nome que você escolher a ele) e digite a senha.
 
-### 🗄️ Gerenciamento de Dados
-O banco de dados armazena o progresso dos meus estudos. 
-Para ver a estrutura das tabelas e como os dados são organizados, consulte o arquivo:
+**🗄️Gerenciamento de Dados**
+ consulte o arquivo:
 👉 [setup.sql](./setup.sql)
 
 __________________________________

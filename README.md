@@ -1,4 +1,4 @@
-# android-ssh-fullstack-server
+ # android-ssh-fullstack-server
 Servidor PostgreSQL nativo e ambiente Ubuntu (PRoot) rodando em Android 12 via Termux, com suporte a VS Code Remote-SSH, otimização de login e Banco de Dados PostgreSQL.
 
 # 📱 Mobile-Server Architecture: A12 Ubuntu & PostgreSQL
@@ -110,3 +110,40 @@ Erro ❌: Conflito entre os Servidores.
 -adicionar o endereço IP (ssh root@IP -p 8023)
 -coloque a senha do Servidor
 -conectado
+
+
+##Reetruturação do Sql dentro da nova camada
+
+
+
+apt update && apt install postgresql postgresql-contrib -y  === para instalar no ubuntu via vscode
+
+ chown postgres:postgres /run/postgresql ===  Porteiro que define o dono
+
+  su - postgres === entrar no postgres
+
+ls /usr/lib/postgresql/  === ver a versão do postgresql
+
+
+mkdir -p /var/lib/postgresql/17/main   === criar um diretório para o postgresql
+
+/usr/lib/postgresql/17/bin/initdb /var/lib/postgresql/17/main  === usado para direcionar os dados 
+
+
+ /usr/lib/postgresql/17/bin/pg_ctl -D /var/lib/postgresql/17/main -l logfile start      ==== iniciar o Servidor Postgresql
+
+
+Automação
+
+
+nano ~/.bashrc  
+
+cole no final
+
+alias ligar='su - postgres -c "/usr/lib/postgresql/17/bin/pg_ctl -D /var/lib/postgresql/17/main -l logfile start"'
+
+comando == digite (ligar)para iniciar o banco de dados
+su - postgres == para entrar como dono
+psql === entre no console do banco
+
+source~/.bashrc === atualiza o terminal caso necessário

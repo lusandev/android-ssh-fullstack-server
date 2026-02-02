@@ -1,6 +1,10 @@
  # android-ssh-fullstack-server
 Servidor PostgreSQL nativo e ambiente Ubuntu (PRoot) rodando em Android 12 via Termux, com suporte a VS Code Remote-SSH, otimização de login e Banco de Dados PostgreSQL.
 
+
+Servidor reorganizado, lembrete de update aqui !
+
+
 # 📱 Mobile-Server Architecture: A12 Ubuntu & PostgreSQL
 
 ## 📌 Sobre o Projeto ##

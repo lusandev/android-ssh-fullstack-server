@@ -2,17 +2,17 @@
 Servidor PostgreSQL nativo e ambiente Ubuntu (PRoot) rodando em Android 12 via Termux, com suporte a VS Code Remote-SSH, otimização de login e Banco de Dados PostgreSQL.
 
 
-Servidor reorganizado, lembrete de update aqui !
+Servidor em reorganização, lembrete de update aqui !
 
 
 # 📱 Mobile-Server Architecture: A12 Ubuntu & PostgreSQL
 
-## 📌 Sobre o Projeto ##
+##  Sobre o Projeto ##
  documentando a transformação de um celular *Samsung Galaxy A12* (hardware móvel) em um ambiente de servidor Linux robusto. O objetivo era criar um laboratório de desenvolvimento, hospedando serviços de banco de dados e automações, integrado ao meu setup principal (Vision R15m no Ubuntu).
 
 __________________________
 
-## 🛠️ Especificações do Ecossistema ##
+##  Especificações do Ecossistema ##
 - *Servidor (Host):* Samsung Galaxy A12 (Octa-core / 4GB RAM)
 - *S.O. Base:* Android 11+
 - *Ambiente Linux:* Termux + PRoot (Ubuntu 25.10 LTS)
@@ -23,7 +23,7 @@ __________________________
 
 
     
-## 🏗️ 1. Implementação da Infraestrutura ##
+##  1. Implementação da Infraestrutura ##
 
 A base do servidor foi construída utilizando emulação de espaço de usuário (PRoot) para rodar uma distribuição Linux completa (Ubuntu.
 ### Setup do Ambiente ###
@@ -59,7 +59,7 @@ __________________________________
 
 __________________________________
 
-## ⚠️ Comportamento de Sessão e Persistência ##
+##  Comportamento de Sessão e Persistência ##
 
 Durante o desenvolvimento, observei um comportamento específico na gestão de processos entre o Host (Termux) e o Guest (Ubuntu):
 
@@ -111,7 +111,7 @@ Erro : Conflito entre os Servidores.
 -conectado
 
 
-##Reetruturação do Sql dentro da nova camada
+##Reetruturação do Sql dentro da nova camada (houve mudanças)
 
 
 
@@ -132,7 +132,7 @@ mkdir -p /var/lib/postgresql/17/main   === criar um diretório para o postgresql
  /usr/lib/postgresql/17/bin/pg_ctl -D /var/lib/postgresql/17/main -l logfile start      ==== iniciar o Servidor Postgresql
 
 
-Automação
+Automação  (parte ainda em documentação)
 
 
 nano ~/.bashrc  

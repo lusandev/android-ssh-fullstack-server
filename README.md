@@ -25,7 +25,7 @@ __________________________
     
 ## 🏗️ 1. Implementação da Infraestrutura ##
 
-A base do servidor foi construída utilizando emulação de espaço de usuário (PRoot) para rodar uma distribuição Linux completa.
+A base do servidor foi construída utilizando emulação de espaço de usuário (PRoot) para rodar uma distribuição Linux completa (Ubuntu.
 ### Setup do Ambiente ###
 1. *Instalação do Host:*
    ```bash
@@ -34,7 +34,7 @@ A base do servidor foi construída utilizando emulação de espaço de usuário 
    proot-distro install ubuntu
 
 ##2 . Banco de Dados (PostgreSQL)##
-O banco de dados foi configurado nativamente no Termux para garantir a melhor performance de I/O, utilizando o armazenamento externo como volume principal.
+O banco de dados foi instalado dentro do proot-distro Ubuntu para garantir a melhor performance de I/O, utilizando o armazenamento externo como volume principal.
 ```
 pkg update && pkg upgrade -y
 pkg install postgresql -y
@@ -49,11 +49,6 @@ Este banco é o meu repositório central de estudos. Nele, registo todos os exer
 ## forma de acesso: ##
 
 -após a instalação, digite no terminal: psql postresql (ou o nome que você escolher a ele) e digite a senha.
-
-**🗄️Gerenciamento de Dados**
- consulte o arquivo:
-👉 [setup.sql](./setup.sql)
-
 __________________________________
 
 ## 🛠️ Desafios Superados (Troubleshooting)##
@@ -73,7 +68,7 @@ Ao utilizar o script `./start-server.sh`, a sessão do Ubuntu torna-se o process
 - **Ação:** O comando `exit` encerra o container PRoot.
 - **Efeito:** Devido ao encadeamento de comandos, o encerramento do container pode fechar a sessão atual do Termux para garantir que não fiquem processos "zumbis" consumindo a RAM do Samsung A12.
 
-### 2. Identificação de Ambiente via Neofetch ###
+### 2. Identificação de Ambiente via fastfetch ###
 Embora o hardware reportado seja sempre o do dispositivo host (Kernel Android / Helio P35), a integridade do ambiente Ubuntu é confirmada pelo:
 - **OS:** Ubuntu 25.10 (Oracular Oriole)
 - **Package Manager:** Presença do `apt`.
@@ -92,7 +87,7 @@ Para viabilizar o uso do **VSCode Remote Server**, foi implementado um ambiente 
     Cuidado, configuração para uso pessoal e Servidores locais, para produção em nuvem é recomendado uso de chave SSH.
     ---
    
-Erro ❌: Conflito entre os Servidores.
+Erro : Conflito entre os Servidores.
 
 ### conflito resolvido
 -O S.O não permitia abrir o servidor Ubuntu, e ao abrir o servidor Termux e fazer o login direto, era fechado automaticamente, sendo necessário uma solução para abrir dentro do prórprio ubuntu
